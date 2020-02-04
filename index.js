@@ -39,6 +39,9 @@ var remarkableImage = require('./remarkable/image');
 
 // Main function which needs to run at start
 async function main() {
+
+    // Swap these two lines to connect to local network or Kusama
+    
     // Substrate node we are connected to and listening to remarks
     const provider = new WsProvider('ws://localhost:9944');
     // const provider = new WsProvider('wss://kusama-rpc.polkadot.io/');
@@ -64,10 +67,11 @@ async function main() {
 	    // Try to never crash
 	    try {
 		let blockNumber = block.block.header.number.toNumber();
-		console.log('Block is: ', blockNumber);
+		console.log('Block #: ', blockNumber);
 		// Extrinsics in the block
 		let extrinsics = await block.block.extrinsics;
 
+		console.log("\tFound", extrinsics.length, 'extrinsic(s) in this block.');
 		// Check each extrinsic in the block
 		for (extrinsic of extrinsics) {
 		    // This specific call index [0,1] represents `system.remark`
@@ -80,6 +84,7 @@ async function main() {
 			// Route the rest of the buffer to the correct remarkable logic
 			switch (prefix) {
 			case '1337':
+			    console.log('Found a remarkableImage extrinsic!');
 			    remarkableImage.parse(buffer);
 			    break;
 			default:

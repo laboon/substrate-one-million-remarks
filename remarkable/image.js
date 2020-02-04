@@ -11,8 +11,7 @@ async function initialize() {
 	console.log('Remarkable Image: Image Found');
     } catch {
 	console.log('Remarkable Image: Image NOT Found');
-	image = new Jimp(1000, 1000, 0x000000ff, (err, image) => {
-	    // this image is 1000 x 1000, every pixel is set to 0x000000ff
+	image = new Jimp(100, 100, 0x000000ff, (err, image) => {
 	});
 	await image.writeAsync('./public/image.png');
 	console.log('Remarkable Image: Image Created');
@@ -45,7 +44,7 @@ function parse(string) {
 	return;
     }
 
-    if (x > 999 || y > 999 || color > 0xffffffff) {
+    if (x > 99 || y > 99 || color > 0xffffffff) {
 	console.log('Remarkable Image: Out of Bounds');
 	return;
     }
@@ -56,7 +55,7 @@ function parse(string) {
 	color: color
     };
 
-    console.log('Remarkable Image: Pixel: ', pixel);
+    console.log('Remarkable Image: Pixel: ', pixel.x, pixel.y, ("000000" + pixel.color.toString(16)).substr(-6));
 
     newPixels.push(pixel);
 
