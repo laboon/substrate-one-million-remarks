@@ -43,8 +43,8 @@ async function main() {
     // Swap these two lines to connect to local network or Kusama
     
     // Substrate node we are connected to and listening to remarks
-    const provider = new WsProvider('ws://localhost:9944');
-    // const provider = new WsProvider('wss://kusama-rpc.polkadot.io/');
+    // const provider = new WsProvider('ws://localhost:9944');
+    const provider = new WsProvider('wss://kusama-rpc.polkadot.io/');
 
     const api = await ApiPromise.create({ provider });
 

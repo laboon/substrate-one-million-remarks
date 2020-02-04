@@ -55,7 +55,7 @@ function parse(string) {
 	color: color
     };
 
-    console.log('Remarkable Image: Pixel: ', pixel.x, pixel.y, ("000000" + pixel.color.toString(16)).substr(-6));
+    console.log('Remarkable Image: Pixel: ', pixel);
 
     newPixels.push(pixel);
 
